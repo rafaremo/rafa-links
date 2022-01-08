@@ -1,0 +1,115 @@
+---
+import profileData from '../data/profile.json';
+
+const profileName = profileData.name;
+
+const personalLinks = [];
+const profesionalLinks = [];
+
+for (let link of profileData.personalLinks) {
+	const withUrl = {...link};
+
+	withUrl.iconUrl = Astro.resolve(`../icons/${link.icon}.svg`);
+
+	personalLinks.push(withUrl);
+}
+
+for (let link of profileData.profesionalLinks) {
+	const withUrl = {...link};
+
+	withUrl.iconUrl = Astro.resolve(`../icons/${link.icon}.svg`);
+
+	profesionalLinks.push(withUrl);
+}
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/manifest.json">
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+		<meta name="theme-color" content="#ffffff">
+		<link rel="stylesheet" href={Astro.resolve('../styles/global.css')}>
+		<meta name="viewport" content="width=device-width" />
+		<title>{profileName} |  Links</title>
+		<meta name="description" content={profileData.description}>
+		<meta name="robots" content="index, follow">
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={`${profileName} |  Links`} />
+		<meta property="og:description" content={profileData.description} />
+		<meta property="og:image" content="https://res.cloudinary.com/acromatico-development/image/upload/c_fill,f_auto,h_1200,w_1200/v1641392022/Rafa%20Page/6575E4EB-3F86-47E7-A315-9CD51E5279EB_mm7ctf" />
+		<meta property="og:url" content={Astro.site} />
+		<link rel="canonical" href={Astro.site}>
+	</head>
+
+	<body class="bg-white dark:bg-gray-900">
+		<header class="w-full flex flex-col justify-center items-center pt-10 ">
+			<img
+				class="w-1/2 md:w-52 rounded-full border-4 border-gray-900 dark:border-white"
+				loading="lazy"
+				src="https://res.cloudinary.com/acromatico-development/image/upload/c_fill,f_auto,h_50,w_50/v1641392022/Rafa%20Page/6575E4EB-3F86-47E7-A315-9CD51E5279EB_mm7ctf"
+				sizes="(max-width: 640px) 50vw,
+							208px"
+				srcset="https://res.cloudinary.com/acromatico-development/image/upload/c_fill,f_auto,h_50,w_50/v1641392022/Rafa%20Page/6575E4EB-3F86-47E7-A315-9CD51E5279EB_mm7ctf 50w,
+								https://res.cloudinary.com/acromatico-development/image/upload/c_fill,f_auto,h_100,w_100/v1641392022/Rafa%20Page/6575E4EB-3F86-47E7-A315-9CD51E5279EB_mm7ctf 100w,
+								https://res.cloudinary.com/acromatico-development/image/upload/c_fill,f_auto,h_200,w_200/v1641392022/Rafa%20Page/6575E4EB-3F86-47E7-A315-9CD51E5279EB_mm7ctf 200w,
+								https://res.cloudinary.com/acromatico-development/image/upload/c_fill,f_auto,h_600,w_600/v1641392022/Rafa%20Page/6575E4EB-3F86-47E7-A315-9CD51E5279EB_mm7ctf 600w,
+								https://res.cloudinary.com/acromatico-development/image/upload/c_fill,f_auto,h_900,w_900/v1641392022/Rafa%20Page/6575E4EB-3F86-47E7-A315-9CD51E5279EB_mm7ctf 900w,
+								https://res.cloudinary.com/acromatico-development/image/upload/c_fill,f_auto,h_1200,w_1200/v1641392022/Rafa%20Page/6575E4EB-3F86-47E7-A315-9CD51E5279EB_mm7ctf 1200w,
+								https://res.cloudinary.com/acromatico-development/image/upload/c_fill,f_auto,h_1500,w_1500/v1641392022/Rafa%20Page/6575E4EB-3F86-47E7-A315-9CD51E5279EB_mm7ctf 1500w"
+				alt="Rafael González"
+			>
+			<h1 class="font-mono font-bold underline underline-offset-8 uppercase text-4xl my-4 tracking-wide dark:text-white">{profileName}</h1>
+			<p class="font-mono text-l mt-4 mx-auto w-11/12 max-w-5xl tracking-wide dark:text-white">{profileData.description}</p>
+		</header>
+		<main>
+			<h2 class="font-mono font-bold uppercase text-xl my-14 mx-auto tracking-wide w-11/12 max-w-5xl dark:text-white">Personal Links</h2>
+			<div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-11/12 max-w-5xl my-2 mx-auto">
+				{personalLinks.map(perLink => (
+					<div class="p-2">
+						<a class="w-full flex flex-col justify-center items-center" href={perLink.url} target="_blank" rel="noopener">
+							<img
+								loading="lazy"
+								class="w-1/2 dark:invert"
+								src={perLink.iconUrl}
+								alt={`${perLink.name} ${profileName}`}
+							>
+							<h3 class="my-2 font-bold text-2xl dark:text-white">{perLink.name}</h3>
+						</a>
+					</div>
+				))}
+			</div>
+			<h2 class="font-mono font-bold uppercase text-xl my-14 mx-auto tracking-wide w-11/12 max-w-5xl dark:text-white">Profesional Links</h2>
+			<div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-11/12 max-w-5xl my-2 mx-auto">
+				{profesionalLinks.map(perLink => (
+					<div class="p-2">
+						<a class="w-full flex flex-col justify-center items-center" href={perLink.url} target="_blank" rel="noopener">
+							<img
+								loading="lazy"
+								class="w-1/2 dark:invert"
+								src={perLink.iconUrl}
+								alt={`${perLink.name} ${profileName}`}
+							>
+							<h3 class="my-2 font-bold text-2xl dark:text-white">{perLink.name}</h3>
+						</a>
+					</div>
+				))}
+			</div>
+		</main>
+		<footer></footer>
+	</body>
+</html>

@@ -1,0 +1,78 @@
+{
+  "name": "Rafael González",
+  "description": "Mexican web developer working @ Acromático Developement by day and being husband and dad the rest of the time 🚀",
+  "personalLinks": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/rafaremo",
+      "icon": "github"
+    },
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/rafaremo",
+      "icon": "instagram"
+    },
+    {
+      "name": "Facebook",
+      "url": "https://www.facebook.com/RafaRemo",
+      "icon": "facebook"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/rafagonvaz",
+      "icon": "linkedin"
+    },
+    {
+      "name": "Twitter",
+      "url": "https://twitter.com/RafaRemo",
+      "icon": "twitter"
+    }
+  ],
+  "profesionalLinks": [
+    {
+      "name": "Website",
+      "url": "https://acromatico.dev",
+      "icon": "web"
+    },
+    {
+      "name": "Shopify",
+      "url": "https://experts.shopify.com/lycklig-td",
+      "icon": "shopify"
+    },
+    {
+      "name": "WhatsApp",
+      "url": "https://wa.me/525621092388",
+      "icon": "whatsapp"
+    },
+    {
+      "name": "GitHub",
+      "url": "https://github.com/acromatico-development",
+      "icon": "github"
+    },
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/acromatico.dev",
+      "icon": "instagram"
+    },
+    {
+      "name": "Discord",
+      "url": "https://discord.gg/NswUaFSG",
+      "icon": "discord"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/company/acromatico",
+      "icon": "linkedin"
+    },
+    {
+      "name": "Facebook",
+      "url": "https://www.facebook.com/acromatico.dev",
+      "icon": "facebook"
+    },
+    {
+      "name": "Email",
+      "url": "mailto:hola@acromati.co",
+      "icon": "email"
+    }
+  ]
+}
