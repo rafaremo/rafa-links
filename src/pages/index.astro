@@ -59,7 +59,7 @@ for (let link of profileData.profesionalLinks) {
 	<body class="bg-white dark:bg-gray-900">
 		<header class="w-full flex flex-col justify-center items-center pt-10 ">
 			<img
-				class="w-1/2 md:w-52 rounded-full border-4 border-gray-900 dark:border-white"
+				class="w-1/2 md:w-52 rounded-full border-4 border-gray-900 dark:border-white aspect-square"
 				loading="lazy"
 				src="https://res.cloudinary.com/acromatico-development/image/upload/c_fill,f_auto,h_50,w_50/v1641392022/Rafa%20Page/6575E4EB-3F86-47E7-A315-9CD51E5279EB_mm7ctf"
 				sizes="(max-width: 640px) 50vw,
@@ -100,7 +100,7 @@ for (let link of profileData.profesionalLinks) {
 						<a class="w-full flex flex-col justify-center items-center" href={perLink.url} target="_blank" rel="noopener">
 							<img
 								loading="lazy"
-								class="w-1/2 dark:invert"
+								class="w-1/2 dark:invert aspect-square"
 								src={perLink.iconUrl}
 								alt={`${perLink.name} ${profileName}`}
 							>
@@ -110,6 +110,8 @@ for (let link of profileData.profesionalLinks) {
 				))}
 			</div>
 		</main>
-		<footer></footer>
+		<footer class="px-3 py-8">
+			<p class="dark:text-white text-center">Powered by <a class="underline" href="https://acromatico.dev" target="_blank" rel="noopener">Acromático Development</a></p>
+		</footer>
 	</body>
 </html>
