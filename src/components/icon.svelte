@@ -2,6 +2,8 @@
   export let perLink;
   export let profileName;
 
+  console.log(perLink)
+
   function handleClick(event){
     gtag('event', 'view_item', {
       'event_category' : 'Links',
@@ -10,8 +12,8 @@
   }
 </script>
 
-<div class="p-2">
-  <a class="w-full flex flex-col justify-center items-center" href={perLink.url} target="_blank" rel="noopener" on:click={handleClick}>
+<div class="p-2" on:click={handleClick}>
+  <a class="w-full flex flex-col justify-center items-center" href={perLink.url} target="_blank" rel="noopener" >
     <img
       loading="lazy"
       class="w-1/2 dark:invert"
