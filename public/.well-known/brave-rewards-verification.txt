@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: rafa.page
+Token: 6147e2c943f91d298ea476abc693217b58d968b1748dc71f7793218c5034988c
