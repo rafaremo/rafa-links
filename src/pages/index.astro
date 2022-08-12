@@ -2,13 +2,20 @@
 import profileData from '../data/profile.json';
 import Icon from "../components/icon.svelte";
 
+type IconData = {
+		name: string;
+		url: string;
+		icon: string;
+		iconUrl?: string;
+	}
+
 const profileName = profileData.name;
 
 const personalLinks = [];
 const profesionalLinks = [];
 
 for (let link of profileData.personalLinks) {
-	const withUrl = {...link};
+	const withUrl: IconData = {...link};
 
 	withUrl.iconUrl = `/icons/${link.icon}.svg`;
 
@@ -16,7 +23,7 @@ for (let link of profileData.personalLinks) {
 }
 
 for (let link of profileData.profesionalLinks) {
-	const withUrl = {...link};
+	const withUrl: IconData = {...link};
 
 	withUrl.iconUrl = `/icons/${link.icon}.svg`;
 
@@ -44,7 +51,6 @@ for (let link of profileData.profesionalLinks) {
 		<meta name="msapplication-TileColor" content="#ffffff">
 		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 		<meta name="theme-color" content="#ffffff">
-		<link rel="stylesheet" href={Astro.resolve('../styles/global.css')}>
 		<meta name="viewport" content="width=device-width" />
 		<title>{profileName} |  Links</title>
 		<meta name="description" content={profileData.description}>
