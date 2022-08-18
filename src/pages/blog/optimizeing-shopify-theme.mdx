@@ -1,0 +1,66 @@
+---
+layout: ../../layouts/main.astro
+title: Optimizing performance of an old Shopify Theme
+description:
+  Some tips and recommendations for optimizing and boosting performance of an
+  old Shopify theme.
+exerpt:
+  In this first blog post I want to share some of the things I've learned during
+  this process, that way maybe I can help other jump through some of the hard
+  parts of successfully optimizing a Shopify theme.
+image: https://images.unsplash.com/photo-1506818144585-74b29c980d4b?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzNTMzMzl8MHwxfGFsbHx8fHx8fHx8fDE2NjA3OTI2NjA&ixlib=rb-1.2.1&q=80&w=1600&ar=16:9&fit=crop
+---
+
+# Optimizing an old Shopify Theme
+
+<img
+  alt="Optimizing an old Shopify Theme"
+  src="https://images.unsplash.com/photo-1506818144585-74b29c980d4b?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzNTMzMzl8MHwxfGFsbHx8fHx8fHx8fDE2NjA3OTI2NjA&ixlib=rb-1.2.1&q=80&w=300&ar=5:2&fit=crop"
+  srcset="https://images.unsplash.com/photo-1506818144585-74b29c980d4b?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzNTMzMzl8MHwxfGFsbHx8fHx8fHx8fDE2NjA3OTI2NjA&ixlib=rb-1.2.1&q=80&w=300&ar=5:2&fit=crop 300w,
+          https://images.unsplash.com/photo-1506818144585-74b29c980d4b?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzNTMzMzl8MHwxfGFsbHx8fHx8fHx8fDE2NjA3OTI2NjA&ixlib=rb-1.2.1&q=80&w=500&ar=5:2&fit=crop 500w,
+          https://images.unsplash.com/photo-1506818144585-74b29c980d4b?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzNTMzMzl8MHwxfGFsbHx8fHx8fHx8fDE2NjA3OTI2NjA&ixlib=rb-1.2.1&q=80&w=800&ar=5:2&fit=crop 800w,
+          https://images.unsplash.com/photo-1506818144585-74b29c980d4b?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzNTMzMzl8MHwxfGFsbHx8fHx8fHx8fDE2NjA3OTI2NjA&ixlib=rb-1.2.1&q=80&w=1024&ar=5:2&fit=crop 1024w"
+  sizes="(max-width: 310px) 300px,
+         (max-width: 510px) 500px,
+         (max-width: 810px) 800px,
+         1024px"
+/>
+
+## Some tips and recommendations for optimizing and boosting performance of an old Shopify theme.
+
+At <a href="https://acromatico.dev" target="_blank">Acromático Development</a>
+we are allways helping our clients optimize their Shopify stores, not only the
+UX and UI, but also the performance and speed of the site. Optimizing a Shopify
+theme is not a simple task, it has been a long learning path that continues
+evolving and improving as we test and try new methodologies.
+
+In this first blog post I want to share some of the things I've learned during
+this process, that way maybe I can help other jump through some of the hard
+parts of successfully optimizing a Shopify theme.
+
+### Initial Analysis
+
+Let's start by (in a really broad sense) diferenciating the optimizations that
+can be done on a Site. We started by separating them in two main areas:
+
+1. **Optimizing the Server:** Changes that have to do with where you are hosting
+   the page, things like having a fast and reliable CDN, having all the correct
+   catching policies, how fast the server responds, how near to the end user the
+   server is located, etc. This part is nearly imposible to optimize for a
+   Shopify theme since all this part is controlled by Shopify itself.
+2. **Optimizing the Code:** Changes that have to be done on the code of the
+   theme, here's where most of our efforts will be focused. Things like
+   preconnecting to 3rd party servers, preloading assets, removing unused code,
+   optimizing images and orchestating CSS and JavaScript loading times are the
+   things we are going to focus on this section.
+
+### Optimizing the Code
+
+I know there are many ways to aproach the optimization the differents parts of
+the code, but this is the process I follow, hope that it makes sense for the
+mayority of the cases. For this example I will use one of our client's themes
+(we have previus authorisation to use this theme as an example), the store is
+calles <a href="https://lycklig.com.mx" target="_blank">Lycklig Party Shop</a> and they sell party supplies. They have been in
+Shopify since 2016 and the theme has been the same sinse the start of the store.
+
+#### Preconnecting to 3rd party servers and preloading known assets

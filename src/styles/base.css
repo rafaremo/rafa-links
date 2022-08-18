@@ -1,0 +1,42 @@
+/* The integration's default injected base.css fileeee */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  main h1 {
+    @apply text-4xl font-bold mb-8 text-center uppercase;
+  }
+
+  main h2 {
+    @apply text-2xl font-bold mb-8 uppercase;
+  }
+
+  main h3 {
+    @apply text-xl font-bold mb-8;
+  }
+
+  main h4 {
+    @apply text-sm font-bold mb-8 uppercase;
+  }
+
+  main ol {
+    @apply list-decimal mb-8 ml-8;
+  }
+
+  main li:not(:last-child) {
+    @apply mb-4;
+  }
+
+  main a {
+    @apply text-green-500;
+  }
+
+  main p {
+    @apply mb-8;
+  }
+
+  main img {
+    @apply w-full mb-8 aspect-[5/2] object-cover;
+  }
+}
