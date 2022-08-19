@@ -24,6 +24,10 @@
     @apply list-decimal mb-8 ml-8;
   }
 
+  main.blog ul {
+    @apply list-disc mb-8 ml-8;
+  }
+
   main.blog li:not(:last-child) {
     @apply mb-4;
   }
@@ -36,7 +40,50 @@
     @apply mb-8;
   }
 
-  main.blog img {
+  main.blog img.cover {
     @apply w-full mb-8 aspect-[5/2] object-cover;
+  }
+
+  main.blog .image__container {
+    @apply w-full md:w-1/2 mx-auto mb-8 object-cover;
+  }
+
+  main.blog .image__container img {
+    @apply w-full object-cover;
+  }
+
+  main.blog .image__container small {
+    @apply text-xs;
+  }
+
+  main.blog pre {
+    color: #f8fafc;
+    background-color: var(--tw-prose-pre-bg);
+    overflow-x: auto;
+    font-weight: 400;
+    font-size: .875em;
+    line-height: 1.7142857;
+    margin-top: 1.4285714285714286em;
+    margin-bottom: 2.2857142857142856em;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -2px rgb(0 0 0 / 10%);
+    display: flex;
+  }
+
+  main.blog p code {
+    background-color: #0d1117;
+    color: #c9d1d9;
+    border-radius: 0.1rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -2px rgb(0 0 0 / 10%);
+    @apply p-1;
+  }
+
+  main.blog pre .language-id {
+    @apply hidden;
+  }
+
+  main.blog pre .language-id {
+    @apply w-full;
   }
 }

@@ -15,6 +15,7 @@ image: https://images.unsplash.com/photo-1506818144585-74b29c980d4b?crop=entropy
 
 <img
   alt="Optimizing an old Shopify Theme"
+  class="cover"
   src="https://images.unsplash.com/photo-1506818144585-74b29c980d4b?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzNTMzMzl8MHwxfGFsbHx8fHx8fHx8fDE2NjA3OTI2NjA&ixlib=rb-1.2.1&q=80&w=300&ar=5:2&fit=crop"
   srcset="https://images.unsplash.com/photo-1506818144585-74b29c980d4b?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzNTMzMzl8MHwxfGFsbHx8fHx8fHx8fDE2NjA3OTI2NjA&ixlib=rb-1.2.1&q=80&w=300&ar=5:2&fit=crop 300w,
           https://images.unsplash.com/photo-1506818144585-74b29c980d4b?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzNTMzMzl8MHwxfGFsbHx8fHx8fHx8fDE2NjA3OTI2NjA&ixlib=rb-1.2.1&q=80&w=500&ar=5:2&fit=crop 500w,
@@ -60,7 +61,156 @@ I know there are many ways to aproach the optimization the differents parts of
 the code, but this is the process I follow, hope that it makes sense for the
 mayority of the cases. For this example I will use one of our client's themes
 (we have previus authorisation to use this theme as an example), the store is
-calles <a href="https://lycklig.com.mx" target="_blank">Lycklig Party Shop</a> and they sell party supplies. They have been in
-Shopify since 2016 and the theme has been the same sinse the start of the store.
+calles <a href="https://lycklig.com.mx" target="_blank">Lycklig Party Shop</a>
+and they sell party supplies. They have been in Shopify since 2016 and the theme
+has been the same sinse the start of the store.
+
+#### Running the first control tests
+
+I use two tools to measure the progress that was achieved with the optimization.
+Google Page Speed Insights and Web Page Test. Both tools are great, Google Page
+Speed Insights is required since one of the main goals of optimizing a Shopify
+store is to rank better in Google searches. Web Page Test is a professional tool
+for those looking to optimize in depth their site.
+
+Webpage Test Report:
+[Report](https://www.webpagetest.org/result/220819_BiDc6R_B5K/).
+
+PageSpeed Insights Report:
+
+<div class="image__container">
+  <img
+    alt="Lycklig Not Optimized Page Speed Insights Report"
+    style="aspect-ratio: 968/895;"
+    src="https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_300/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png"
+    srcset="https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_300/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png 300w,
+            https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_500/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png 500w,
+            https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_760/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png 760w,
+            https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_968/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png 968w"
+    sizes="(max-width: 310px) 300px,
+          (max-width: 510px) 500px,
+          (max-width: 768px) 760px,
+          (max-width: 1024px) 500px,
+          968px"
+  />
+  <small>Lycklig Not Optimized Page Speed Insights Report</small>
+</div>
 
 #### Preconnecting to 3rd party servers and preloading known assets
+
+One of the easiest and most effective things to do when optimizing a Shopify
+theme is to make sure that the site has the basic servers preconnected and ready
+to be used by the files and assests that will be downloaded.
+
+Using the experiments tab on the WebPage test app we found out the next servers
+could be preconnected:
+
+- fonts.gstatic.com
+- cdn.shopify.com
+- fonts.shopifycdn.com
+
+As well we found out there were 2 filles that could be preloaded:
+
+```text
+- https://a.klaviyo.com/media/js/onsite/onsite.js
+- https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js (Yes, this site still uses JQuery)
+- https://fonts.googleapis.com/css?family=Lora:700
+- https://fonts.googleapis.com/css?family=Open+Sans:400
+```
+
+We added the next lines to the head of the theme:
+
+```html
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+<link rel="preconnect" href="https://cdn.shopify.com" />
+<link rel="preconnect" href="https://fonts.shopifycdn.com" />
+<link
+  rel="preload"
+  href="https://a.klaviyo.com/media/js/onsite/onsite.js"
+  as="script"
+/>
+<link
+  rel="preload"
+  href="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"
+  as="script"
+/>
+<link
+  rel="preload"
+  href="https://fonts.googleapis.com/css?family=Lora:700"
+  as="style"
+/>
+<link
+  rel="preload"
+  href="https://fonts.googleapis.com/css?family=Open+Sans:400"
+  as="style"
+/>
+```
+
+#### Removing unused and slow scripts
+
+This next step is super easy and can help a lot when optimizing a Shopify theme.
+Normally a merchant will install apps or manually add code for certain
+functionality they needed. If it is an old theme it is super easy to forget you
+installed apps or added code that you are not longer using. In the best scenario
+it will be code that gets downloaded and slows down the site, in the worst
+scenario, it will generate errors.
+
+By going to the console and the network tab we filter the JS Files and order
+them by total time to load we can see the next result:
+
+<div class="image__container">
+  <img
+    alt="Lycklig Not Optimized Page Speed Insights Report"
+    style="aspect-ratio: 968/895;"
+    src="https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_300/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png"
+    srcset="https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_300/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png 300w,
+            https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_500/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png 500w,
+            https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_760/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png 760w,
+            https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_968/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png 968w"
+    sizes="(max-width: 310px) 300px,
+          (max-width: 510px) 500px,
+          (max-width: 768px) 760px,
+          (max-width: 1024px) 500px,
+          968px"
+  />
+  <small>Lycklig Not Optimized Page Speed Insights Report</small>
+</div>
+
+There are 5 super slow scripts:
+
+```text
+- https://cdn.shopify.com/shopifycloud/shopify/assets/shop_events_listener-65cd0ba3fcd81a1df33f2510ec5bcf8c0e0958653b50e3965ec972dd638ee13f.js
+- https://cdn.shopify.com/s/files/1/1866/3075/t/8/assets/modernizr.min.js?v=21391054748206432451628529599
+- ttps://cdn.shopify.com/shopifycloud/boomerang/shopify-boomerang-1.0.0.min.js
+- https://cdn.shopify.com/s/files/1/1866/3075/t/8/assets/theme.js?v=95155629628367876391628529613
+- https://cdn.shopify.com/s/trekkie.storefront.ebdc6f6e0c97d8f5d6a7dac9bc6ab298fff7cf1b.min.js
+```
+
+All of themm are basic scripts with the exception of modernizr. Lets go ahead
+and remove modernizr file from the `theam.liquid` file and check that there are
+no errors.
+
+We got an error in the `theme.js` file. Lets see if we can fix it by removing
+any reference to modernizr.
+
+<div class="image__container">
+  <img
+    alt="Lycklig Not Optimized Page Speed Insights Report"
+    style="aspect-ratio: 968/895;"
+    src="https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_300/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png"
+    srcset="https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_300/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png 300w,
+            https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_500/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png 500w,
+            https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_760/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png 760w,
+            https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_968/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png 968w"
+    sizes="(max-width: 310px) 300px,
+          (max-width: 510px) 500px,
+          (max-width: 768px) 760px,
+          (max-width: 1024px) 500px,
+          968px"
+  />
+  <small>Lycklig Not Optimized Page Speed Insights Report</small>
+</div>
+
+We found a `Modernizr` instance being referenced in diferent parts of the file.
+We just carefully deleted them and the error was gone. If this had become a
+larger prioblem we woud have gonne back to not removing the modernizr file.
