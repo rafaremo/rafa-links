@@ -2,8 +2,6 @@
   export let perLink;
   export let profileName;
 
-  console.log(perLink)
-
   function handleClick(event){
     gtag('event', 'view_item', {
       'event_category' : 'Links',

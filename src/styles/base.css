@@ -4,39 +4,39 @@
 @tailwind utilities;
 
 @layer components {
-  main h1 {
+  main.blog h1 {
     @apply text-4xl font-bold mb-8 text-center uppercase;
   }
 
-  main h2 {
+  main.blog h2 {
     @apply text-2xl font-bold mb-8 uppercase;
   }
 
-  main h3 {
+  main.blog h3 {
     @apply text-xl font-bold mb-8;
   }
 
-  main h4 {
+  main.blog h4 {
     @apply text-sm font-bold mb-8 uppercase;
   }
 
-  main ol {
+  main.blog ol {
     @apply list-decimal mb-8 ml-8;
   }
 
-  main li:not(:last-child) {
+  main.blog li:not(:last-child) {
     @apply mb-4;
   }
 
-  main a {
+  main.blog a {
     @apply text-green-500;
   }
 
-  main p {
+  main.blog p {
     @apply mb-8;
   }
 
-  main img {
+  main.blog img {
     @apply w-full mb-8 aspect-[5/2] object-cover;
   }
 }
