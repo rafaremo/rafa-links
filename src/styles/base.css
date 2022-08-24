@@ -28,6 +28,10 @@
     @apply list-disc mb-8 ml-8;
   }
 
+  main.blog li p {
+    @apply mb-0;
+  }
+
   main.blog li:not(:last-child) {
     @apply mb-4;
   }
