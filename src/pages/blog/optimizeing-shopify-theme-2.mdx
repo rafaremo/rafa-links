@@ -37,7 +37,7 @@ evolving and improving as we test and try new methodologies.
 
 This is a continuation of the Optimizing an old Shopify Theme series, if you
 want to read about the initial analysis done to know what to look for in a
-theme, check out the [part 1](/blog/optimizeing-shopify-theme-1)  of this series.
+theme, check out the [part 1](/blog/optimizeing-shopify-theme-1) of this series.
 
 #### Preconnecting to 3rd party servers and preloading known assets
 
@@ -103,20 +103,20 @@ them by total time to load we can see the next result:
 
 <div class="image__container">
   <img
-    alt="Lycklig Not Optimized Page Speed Insights Report"
-    style="aspect-ratio: 968/895;"
-    src="https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_300/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png"
-    srcset="https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_300/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png 300w,
-            https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_500/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png 500w,
-            https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_760/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png 760w,
-            https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_968/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png 968w"
+    alt="Lycklig JS Download"
+    style="aspect-ratio: 4/3;"
+    src="https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_300/v1661395344/Rafa%20Blog/lycklig-js-download_siplp5.png"
+    srcset="https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_300/v1661395344/Rafa%20Blog/lycklig-js-download_siplp5.png 300w,
+            https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_500/v1661395344/Rafa%20Blog/lycklig-js-download_siplp5.png 500w,
+            https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_760/v1661395344/Rafa%20Blog/lycklig-js-download_siplp5.png 760w,
+            https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_968/v1661395344/Rafa%20Blog/lycklig-js-download_siplp5.png 968w"
     sizes="(max-width: 310px) 300px,
           (max-width: 510px) 500px,
           (max-width: 768px) 760px,
           (max-width: 1024px) 500px,
           968px"
   />
-  <small>Lycklig Not Optimized Page Speed Insights Report</small>
+  <small>Lycklig JS Downloaded by Theme</small>
 </div>
 
 There are 5 super slow scripts:
@@ -129,31 +129,43 @@ There are 5 super slow scripts:
 - https://cdn.shopify.com/s/trekkie.storefront.ebdc6f6e0c97d8f5d6a7dac9bc6ab298fff7cf1b.min.js
 ```
 
-All of themm are basic scripts with the exception of modernizr. Lets go ahead
-and remove modernizr file from the `theam.liquid` file and check that there are
-no errors.
+All of themm are essential scripts with the exception of modernizr. Lets go
+ahead and remove modernizr file from the `theam.liquid` file and check that
+there are no errors.
 
 We got an error in the `theme.js` file. Lets see if we can fix it by removing
 any reference to modernizr.
 
 <div class="image__container">
   <img
-    alt="Lycklig Not Optimized Page Speed Insights Report"
-    style="aspect-ratio: 968/895;"
-    src="https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_300/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png"
-    srcset="https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_300/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png 300w,
-            https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_500/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png 500w,
-            https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_760/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png 760w,
-            https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_968/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png 968w"
+    alt="Lycklig Modernizr Error"
+    style="aspect-ratio: 22/5;"
+    src="https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_300/v1661395373/Rafa%20Blog/lycklig-modernizr_mcanhk.png"
+    srcset="https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_300/v1661395373/Rafa%20Blog/lycklig-modernizr_mcanhk.png 300w,
+            https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_500/v1661395373/Rafa%20Blog/lycklig-modernizr_mcanhk.png 500w,
+            https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_760/v1661395373/Rafa%20Blog/lycklig-modernizr_mcanhk.png 760w,
+            https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_968/v1661395373/Rafa%20Blog/lycklig-modernizr_mcanhk.png 968w"
     sizes="(max-width: 310px) 300px,
           (max-width: 510px) 500px,
           (max-width: 768px) 760px,
           (max-width: 1024px) 500px,
           968px"
   />
-  <small>Lycklig Not Optimized Page Speed Insights Report</small>
+  <small>Lycklig Modernizr Error</small>
 </div>
 
 We found a `Modernizr` instance being referenced in diferent parts of the file.
-We just carefully deleted them and the error was gone. If this had become a
-larger prioblem we woud have gonne back to not removing the modernizr file.
+We just carefully deleted them and the error was gone. The problem was that all
+the icons of the theme changed to text 👎. This has become a larger prioblem so
+we will go back to not removing the modernizr file.
+
+#### Images Optimization and Elements with Layout Shifts
+
+By looking at the
+[Web Vitals Webpage Test Report](https://www.webpagetest.org/vitals.php?test=220819_BiDc6R_B5K&run=3#lcp-full)
+we can see diferent elements that produce layout shifts. The main one is the
+announcement bar. Lets add a fix height to the announcement bar to fix that.
+
+As well the main logo appears from no where and moves the size of the header. We
+can add an aspect ratio property to the logo to fix that by adding
+`aspect-ratio: 10/3;` to the logo style tag.

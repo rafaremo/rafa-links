@@ -1,0 +1,8 @@
+[dev]
+  framework = "astro"
+
+[[redirects]]
+  from="/blog/optimizeing-shopify-theme"
+  to="/blog/optimizeing-shopify-theme-1"
+  status=301
+  force = true

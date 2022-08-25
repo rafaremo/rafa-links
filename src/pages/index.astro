@@ -38,7 +38,7 @@ for (let link of profileData.profesionalLinks) {
 	<div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-11/12 max-w-5xl my-2 mx-auto">
 
 		{personalLinks.map(perLink => (
-		<Icon client:load perLink={perLink} profileName={profileName} />
+			<Icon client:load perLink={perLink} profileName={profileName} />
 		))}
 	</div>
 	<h2 class="font-mono font-bold uppercase text-xl my-14 mx-auto tracking-wide w-11/12 max-w-5xl dark:text-white">
