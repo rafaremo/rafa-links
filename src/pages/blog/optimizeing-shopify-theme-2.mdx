@@ -162,10 +162,82 @@ we will go back to not removing the modernizr file.
 #### Images Optimization and Elements with Layout Shifts
 
 By looking at the
-[Web Vitals Webpage Test Report](https://www.webpagetest.org/vitals.php?test=220819_BiDc6R_B5K&run=3#lcp-full)
+[Web Vitals Webpage Test Report](https://www.webpagetest.org/vitals.php?test=220819_BiDc6R_B5K&run=3#cls)
 we can see diferent elements that produce layout shifts. The main one is the
-announcement bar. Lets add a fix height to the announcement bar to fix that.
+announcement bar. Lets add a fix height to the announcement bar to fix that
+issue.
 
 As well the main logo appears from no where and moves the size of the header. We
 can add an aspect ratio property to the logo to fix that by adding
 `aspect-ratio: 10/3;` to the logo style tag.
+
+Something we noted in the code was that all the images of the theme have lazy
+loading added, even the initially rendered ones. We removed all the lazuy
+loading added to the initial images. as well we added a `srcset` attribute and a
+`sizes` attribute to the images and even some images where still rendered with
+the CSS `background-image` property, we changed that to be an `img` tag.
+
+This is the code to render the images of the slider before the changes:
+
+```html
+<style>
+  @media screen and (max-width: 1024px) and (max-height: 768px)  {
+    .hero__image--{{ block.id }} {
+      background-image: url('{{ block.settings.image | img_url: '1024x1024' | format: 'jpg' }}');
+    }
+  }
+  @media screen and (min-width: 1025px), screen and (min-height: 769px) {
+    .hero__image--{{ block.id }} {
+      background-image: url('{{ block.settings.image | img_url: '2048x2048' | format: 'jpg' }}');
+    }
+  }
+</style>
+
+<div
+  class="hero__image hero__image--{{ block.id }}"
+  data-image="{{ block.settings.image | img_url: '1024x1024' | format: 'jpg' }}"
+></div>
+```
+
+After we changed the code it looked like this:
+
+```html
+<div class="hero__image hero__image--{{ block.id }}">
+  <img
+    srcset="{{ block.settings.image | img_url: '320x320' }} 320w,
+                {{ block.settings.image | img_url: '480x480' }} 480w,
+                {{ block.settings.image | img_url: '800x800' }} 800w,
+                {{ block.settings.image | img_url: '1024x1024' }} 1024w,
+                {{ block.settings.image | img_url: '2048x2048' }} 2048w"
+    sizes="(max-width: 320px) 320px,
+              (max-width: 480px) 480px,
+              (max-width: 800px) 800px,
+              (max-width: 1024px) 1024px,
+              2048px"
+    src="{{ block.settings.image | img_url: '2048x2048' }}"
+    loading="lazy"
+    width="2048"
+    height="2048"
+    alt="{{ block.settings.image.alt | escape }}"
+    class=""
+  />
+</div>
+```
+
+### The Final Results
+
+Over all we think the theme was all ready well optimized, changes where minor
+and the most relevant change had to do with the slider images. There are other
+areas of improvement like removing modernizr and jquery from the base libraries
+the theme uses but that is considered a huge change in which case it would be
+better to consider migrating to a newer theme.
+
+The final reports made in Web Page Test ands Google Page Speed Insights are
+available here:
+
+- [Web Page Test Report](https://www.webpagetest.org/result/220825_BiDc5H_AXN/)
+- [Google Page Speed Insights](https://pagespeed.web.dev/report?url=https%3A%2F%2Fwww.lycklig.com.mx%2F)
+
+Hope this entry helps you optimizing your Shopify Themes, this same concept can
+be applied to any web page with the difference of the usage of liquid and maybe
+having more control over the scripts that are being loaded in the page.
