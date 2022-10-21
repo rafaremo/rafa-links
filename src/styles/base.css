@@ -90,4 +90,8 @@
   main.blog pre .language-id {
     @apply w-full;
   }
+
+  main.blog iframe {
+    @apply w-full mb-8;
+  }
 }

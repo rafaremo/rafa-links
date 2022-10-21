@@ -1,0 +1,81 @@
+---
+import MainLayout from "../../layouts/main.astro";
+import { Client } from "@notionhq/client";
+import { NotionToMarkdown } from "notion-to-md";
+import {marked} from "marked";
+
+const notion = new Client({
+  auth: "secret_AXxqx7iaGrcuAcG5ib9l6smC0jqaEeLDb6G1jtUwI5i",
+});
+
+export async function getStaticPaths() {
+  const pageId = "87ff5ccc453349de8aa5ae32833817e3";
+
+  const notionPagesContent = await (
+    await fetch(
+      `https://api.notion.com/v1/blocks/${pageId}/children?page_size=100`,
+      {
+        headers: {
+          Authorization: `Bearer secret_AXxqx7iaGrcuAcG5ib9l6smC0jqaEeLDb6G1jtUwI5i`,
+          "Notion-Version": "2022-02-22",
+        },
+      }
+    )
+  ).json();
+
+  const pages = notionPagesContent.results.filter(
+    (page) => page.type === "child_page"
+  );
+
+  return pages.map((page) => ({
+    params: {
+      id: page.id,
+    },
+  }));
+}
+
+const { id } = Astro.params;
+
+const pageData = await (
+  await fetch(`https://api.notion.com/v1/pages/${id}`, {
+    headers: {
+      Authorization: `Bearer secret_AXxqx7iaGrcuAcG5ib9l6smC0jqaEeLDb6G1jtUwI5i`,
+      "Notion-Version": "2022-02-22",
+    },
+  })
+).json();
+
+const n2m = new NotionToMarkdown({ notionClient: notion });
+
+// @ts-ignore
+const mdblocks = await n2m.pageToMarkdown(id);
+const mdString = n2m.toMarkdownString(mdblocks);
+const mdArray = mdString.split("\n");
+
+for (let i = 0; i < mdArray.length; i++) {
+  if (mdArray[i].includes("https://www.youtube.com")) {
+    const videoId = mdArray[i].split("watch?v=")[1].split("&")[0];
+    mdArray[i] = '<iframe id="' + videoId + '" type="text/html" width="720" height="405" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe>';
+  }
+}
+
+const mdGood = mdArray.join("\n");
+
+const htmlData = marked.parse(mdGood);
+
+const title = mdString
+  .split("\n")
+  .find((line) => line.startsWith("# "))
+  .replace("# ", "");
+const image = pageData.cover.external.url;
+---
+
+<MainLayout
+  title={title}
+  description="Aquí pordrás encontrar una lista de todas las notas de clases que he dado y sermones que he escuchado."
+  image={image}
+  blog={false}
+  hasMainTitle={true}
+>
+  <div set:html={htmlData}></div>
+</MainLayout>
