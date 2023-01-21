@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
+@layer components {
   main.blog h1 {
     @apply text-4xl font-bold mb-8 text-center uppercase;
   }
@@ -93,5 +93,11 @@
 
   main.blog iframe {
     @apply w-full mb-8;
+  }
+
+  @media only screen and (max-width: 768px) {
+    main.blog h1 {
+      @apply text-lg m-0;
+    }
   }
 }

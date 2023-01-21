@@ -66,7 +66,7 @@ const htmlData = marked.parse(mdGood);
 
 const title = pageData.properties.title.title[0].plain_text.split(" | ").splice(0, pageData.properties.title.title[0].plain_text.split(" | ").length - 1).join(" - ");
 const description = generalString.substring(0, 250);
-console.log(description);
+console.log(pageData.cover)
 const image = pageData.cover.external.url;
 ---
 
@@ -77,6 +77,9 @@ const image = pageData.cover.external.url;
   blog={false}
   hasMainTitle={true}
 >
-  <h1>{title}</h1>
+  <div class="relative w-full aspect-video flex justify-center items-center mb-4">
+    <img src={image} alt={title} class="w-full h-full object-cover absolute top-0 left-0">
+    <h1 class="z-10 text-white px-8 text-sm md:text-xl m-0">{title}</h1>
+  </div>
   <div set:html={htmlData}></div>
 </MainLayout>
