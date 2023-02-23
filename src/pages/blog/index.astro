@@ -1,12 +1,15 @@
 ---
-import MainLayout from "../layouts/main.astro";
-const posts = await Astro.glob("../pages/blog/*.mdx");
+import MainLayout from "../../layouts/main.astro";
+import {getCollection} from "astro:content";
+const posts = await getCollection("blog");
+
+console.log(posts[0].slug);
 
 const postByDate = posts
   .sort((a, b) => {
     return (
-      new Date(b.frontmatter.date).getTime() -
-      new Date(a.frontmatter.date).getTime()
+      new Date(b.data.date).getTime() -
+      new Date(a.data.date).getTime()
     );
   })
   .reverse();
@@ -21,18 +24,18 @@ const postByDate = posts
   <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
     {
       postByDate.map((post) => (
-        <a href={`${post.url}`} class="">
+        <a href={`/blog/${post.slug}`} class="">
           <article class="border-2 border-gray-800 dark:border-gray-200 dark:text-gray-200 dark:hover:text-white text-gray-800 hover:text-black">
-            <img src={post.frontmatter.image} />
+            <img src={post.data.image} />
             <div class="p-4">
               <h3 class="mb-4 uppercase">
-                {post.frontmatter.title}
+                {post.data.title}
               </h3>
               <p class="text-s mb-2">
-                {post.frontmatter.exerpt}
+                {post.data.exerpt}
               </p>
               <p class="text-s text-gray-600 dark:text-gray-400 text-sm">
-                {new Date(post.frontmatter.date).toLocaleDateString("es-US")}
+                {new Date(post.data.date).toLocaleDateString("es-US")}
               </p>
             </div>
           </article>
