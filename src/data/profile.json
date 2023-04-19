@@ -50,14 +50,14 @@
       "icon": "github"
     },
     {
-      "name": "Instagram",
-      "url": "https://www.instagram.com/acromatico.dev",
-      "icon": "instagram"
-    },
-    {
       "name": "Discord",
       "url": "https://discord.gg/NswUaFSG",
       "icon": "discord"
+    },
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/acromatico.dev",
+      "icon": "instagram"
     },
     {
       "name": "LinkedIn",
