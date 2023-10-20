@@ -25,6 +25,7 @@
     "vite": "^4.1.4"
   },
   "dependencies": {
-    "@astrojs/partytown": "^1.2.0"
+    "@astrojs/partytown": "^1.2.0",
+    "@astrojs/rss": "^2.4.4"
   }
 }
