@@ -13,7 +13,7 @@ jobs:
       - name: Build
         run: npm install && npm run build
       - name: Publish
-        uses: https://github.com/cloudflare/pages-action@f0a1cd5
+        uses: https://github.com/cloudflare/pages-action@f0a1cd58cd66095dee69bfa18fa5efd1dde93bca
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
