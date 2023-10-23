@@ -2,7 +2,7 @@ import rss from "@astrojs/rss";
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
 
-export const get: APIRoute = async function get({ site }) {
+export const get: APIRoute = async function get({ site }: any) {
   const posts = await getCollection("blog");
   const items = posts.map(({ data: { image, title, exerpt, date }, slug }) => ({
     title,
