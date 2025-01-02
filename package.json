@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@astrojs/partytown": "^1.2.0",
-    "@astrojs/rss": "^2.4.4"
+    "@astrojs/rss": "^2.4.4",
+    "front-matter": "^4.0.2"
   }
 }

@@ -10,8 +10,8 @@
   }
 </script>
 
-<div class="p-2" on:click={handleClick}>
-  <a class="w-full flex flex-col justify-center items-center" href={perLink.url} target="_blank" rel="noopener" >
+<div class="p-2" on:click={handleClick} on:keydown={handleClick} role="button" tabindex="0">
+  <a class="w-full flex flex-col justify-center items-center hover:text-gray-400 transition-colors duration-300" href={perLink.url} target="_blank" rel="noopener" >
     <img
       loading="lazy"
       class="w-1/2 dark:invert"

@@ -1,0 +1,81 @@
+---
+import MainLayout from "../../layouts/main.astro";
+import fm from 'front-matter';
+
+interface Attributes {
+  title: string;
+  description: string;
+  date: string;
+}
+
+const folderName = "entries";
+
+const entries = await (await fetch(`https://repos.acromatico.dev/api/v1/repos/rafaremo/personal-blog-content/contents/${folderName}?ref=master`, {
+  headers: {
+    "Content-Type": "application/json",
+  }
+})).json();
+
+const postData: {
+  slug: string;
+  title: string;
+  description: string;
+  date: string;
+}[] = [];
+
+for (const entry of entries) {
+  const pageContent = await (
+    await fetch(`https://repos.acromatico.dev/api/v1/repos/rafaremo/personal-blog-content/raw/master/entries/${entry.name}`, {
+      headers: {
+        "Content-Type": "text/plain",
+      }
+    })
+  ).text();
+
+  const attributes = fm(pageContent).attributes as Attributes;
+
+  postData.push({
+    slug: entry.name.replace(".md", ""),
+    title: attributes.title,
+    description: attributes.description,
+    date: attributes.date,
+  });
+}
+
+postData.sort((a, b) => {
+  return new Date(b.date).getTime() - new Date(a.date).getTime();
+});
+---
+
+<MainLayout
+  title="Blog Personal de Rafa"
+  description="Aquí podrás encontrar mis entradas de blog personales."
+  blog={false}
+>
+  <h1 class="text-4xl text-center uppercase font-bold mb-8">Blog Personal de Rafa</h1>
+  <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+    {
+      postData.map((post) => (
+        <a href={`/personal-blog/${post.slug}`} class="">
+          <article class="border-2 border-gray-800 dark:border-gray-200 dark:text-gray-200 dark:hover:text-white text-gray-800 hover:text-black">
+            <div class="p-4">
+              <h3 class="mb-4 uppercase">
+                {post.title}
+              </h3>
+              <p class="text-s mb-2">
+                {post.description}
+              </p>
+              <p class="text-s text-gray-600 dark:text-gray-400 text-sm">
+                {new Date(post.date).toLocaleDateString("es-MX", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </p>
+            </div>
+          </article>
+        </a>
+      ))
+    }
+  </section>
+</MainLayout>

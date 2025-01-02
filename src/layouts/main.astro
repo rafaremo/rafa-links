@@ -197,11 +197,13 @@ const {
         alt="Rafael González"
       />
 
+      
+
       {
         hasMainTitle || frontmatter?.title ? (
-          <a href="/">
+          <a href="/blog">
             <h2 class="font-mono text-center font-bold underline underline-offset-8 uppercase text-4xl my-4 tracking-wide dark:text-white">
-              {profileName} Blog
+              Blog de {profileName}
             </h2>
           </a>
         ) : (
@@ -212,6 +214,19 @@ const {
           </a>
         )
       }
+      <nav class="w-full">
+        <ul class="flex justify-center items-center gap-6">
+          <li>
+            <a href="/" class="text-xl font-mono font-bold uppercase tracking-wide dark:text-white hover:text-gray-400 transition-colors duration-300 underline">Links</a>
+          </li>
+          <li>
+            <a href="/blog" class="text-xl font-mono font-bold uppercase tracking-wide dark:text-white hover:text-gray-400 transition-colors duration-300 underline">Work Blog</a>
+          </li>
+          <li>
+            <a href="/personal-blog" class="text-xl font-mono font-bold uppercase tracking-wide dark:text-white hover:text-gray-400 transition-colors duration-300 underline">Personal Blog</a>
+          </li>
+        </ul>
+      </nav>
       <p
         class="font-mono text-center text-l my-4 sm:mt-4 sm:mb-0 mx-auto w-11/12 max-w-5xl tracking-wide dark:text-white"
       >
