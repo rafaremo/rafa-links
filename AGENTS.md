@@ -6,8 +6,9 @@
 # Install dependencies
 npm install
 
-# Start development server (localhost:3000)
+# Start development server (localhost:4321)
 npm run dev
+npm run dev:host  # expose to network (needed for tunnels)
 npm start        # alias for dev
 
 # Production build
@@ -15,6 +16,10 @@ npm run build    # outputs to ./dist/
 
 # Preview production build locally
 npm run preview
+
+# Cloudflare tunnel for mobile testing
+npm run tunnel   # create tunnel to localhost:4321
+npm run dev:tunnel  # start dev server + tunnel together
 ```
 
 **Note**: This project has no test suite configured. No linting or formatting tools (ESLint, Prettier) are set up.

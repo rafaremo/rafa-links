@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
+    "dev:host": "astro dev --host",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "tunnel": "cloudflared tunnel --url http://localhost:4321",
+    "dev:tunnel": "astro dev --host & cloudflared tunnel --url http://localhost:4321"
   },
   "devDependencies": {
     "@astrojs/mdx": "^4.2.0",
