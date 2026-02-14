@@ -1,6 +1,6 @@
 {
   "name": "Rafael González",
-  "description": "Mexican web developer, Shopify Expert and founder of Acromático Developement. Husband and father, allways builiding stuff personally and professionally 🚀",
+  "description": "Christian Husband, father of two and e-commerce developer. I'm allways builiding stuff personally and professionally 🚀",
   "personalLinks": [
     {
       "name": "GitHub",
@@ -36,7 +36,7 @@
     },
     {
       "name": "Shopify",
-      "url": "https://experts.shopify.com/lycklig-td",
+      "url": "https://www.shopify.com/partners/directory/partner/lycklig-td",
       "icon": "shopify"
     },
     {
@@ -45,19 +45,24 @@
       "icon": "whatsapp"
     },
     {
+      "name": "Gitea",
+      "url": "https://repos.acromatico.dev/acromatico-development",
+      "icon": "gitea"
+    },
+    {
       "name": "GitHub",
       "url": "https://github.com/acromatico-development",
       "icon": "github"
     },
     {
-      "name": "Instagram",
-      "url": "https://www.instagram.com/acromatico.dev",
-      "icon": "instagram"
-    },
-    {
       "name": "Discord",
       "url": "https://discord.gg/NswUaFSG",
       "icon": "discord"
+    },
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/acromatico.dev",
+      "icon": "instagram"
     },
     {
       "name": "LinkedIn",

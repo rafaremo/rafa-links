@@ -1,0 +1,126 @@
+---
+layout: ../../layouts/main.astro
+date: 2022-08-18
+title: Optimizing performance of an old Shopify Theme (Part 1)
+description:
+  This blog post discusses tips and recommendations for optimizing and improving the performance of an old Shopify theme. It covers topics such as Web Vitals, server optimization, and code optimization. The author provides an initial analysis and shares the process they follow for optimizing the code. The post concludes with the mention of a Part 2 that provides practical steps for optimizing a Shopify theme.
+exerpt:
+  Some tips and recommendations for optimizing and boosting performance of an
+  old Shopify theme.
+image: https://images.unsplash.com/photo-1506818144585-74b29c980d4b?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzNTMzMzl8MHwxfGFsbHx8fHx8fHx8fDE2NjA3OTI2NjA&ixlib=rb-1.2.1&q=80&w=350&ar=16:9&fit=crop
+---
+
+# Optimizing an old Shopify Theme (Part 1)
+
+<img
+  alt="Optimizing an old Shopify Theme"
+  class="cover"
+  src="https://images.unsplash.com/photo-1506818144585-74b29c980d4b?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzNTMzMzl8MHwxfGFsbHx8fHx8fHx8fDE2NjA3OTI2NjA&ixlib=rb-1.2.1&q=80&w=300&ar=5:2&fit=crop"
+  srcset="https://images.unsplash.com/photo-1506818144585-74b29c980d4b?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzNTMzMzl8MHwxfGFsbHx8fHx8fHx8fDE2NjA3OTI2NjA&ixlib=rb-1.2.1&q=80&w=300&ar=5:2&fit=crop 300w,
+          https://images.unsplash.com/photo-1506818144585-74b29c980d4b?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzNTMzMzl8MHwxfGFsbHx8fHx8fHx8fDE2NjA3OTI2NjA&ixlib=rb-1.2.1&q=80&w=500&ar=5:2&fit=crop 500w,
+          https://images.unsplash.com/photo-1506818144585-74b29c980d4b?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzNTMzMzl8MHwxfGFsbHx8fHx8fHx8fDE2NjA3OTI2NjA&ixlib=rb-1.2.1&q=80&w=800&ar=5:2&fit=crop 800w,
+          https://images.unsplash.com/photo-1506818144585-74b29c980d4b?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzNTMzMzl8MHwxfGFsbHx8fHx8fHx8fDE2NjA3OTI2NjA&ixlib=rb-1.2.1&q=80&w=1024&ar=5:2&fit=crop 1024w"
+  sizes="(max-width: 310px) 300px,
+         (max-width: 510px) 500px,
+         (max-width: 810px) 800px,
+         1024px"
+/>
+
+## Some tips and recommendations for optimizing and boosting the performance of an old Shopify theme.
+
+At [Acromático Development](https://acromatico.dev/), we are always helping our clients optimize their Shopify stores, not only the UX and UI but also the performance and speed of the site. Optimizing a Shopify theme is not a simple task; it has been a long learning path that continues to evolve and improve as we test and try new methodologies.
+
+In this first blog post, I want to share some of the things I've learned during this process. That way, maybe I can help others navigate through some of the challenging parts of successfully optimizing a Shopify theme.
+
+### Web Vitals and Shopify Themes
+
+If you are reading this post, it is because you've probably been trying to find
+ways to optimize your store theme or a client theme. Shopify shows an average
+score for the theme by running three pages through Google Lightspeed daily.
+These three pages are the home page, product page, and collection page.
+
+If you run these pages via pagespeed.web.dev, you'll notice that the score is
+given by the result of some Google indicators called Web Vitals. The most
+important Web Vitals are:
+
+1. **Largest Contentful Paint (LCP):** This is an important, user-centric metric for
+measuring perceived load speed because it marks the point in the page load
+timeline when the page's main content has likely loaded. A fast LCP helps
+reassure the user that the page is useful.
+    
+    [Philip Walton. "Largest Contentful Paint" web.dev, Aug 17, 2022.](https://web.dev/i18n/en/lcp/)
+    
+2. **Cumulative Layout Shift (CLS):** This is a measure of the largest burst of
+layout shift scores for every unexpected layout shift that occurs during the
+entire lifespan of a page.
+    
+    [Philip Walton. "Cumulative Layout Shift" web.dev, Aug 17, 2022.](https://web.dev/i18n/en/cls/)
+    
+3. **First Contentful Paint (FCP):** This is an important, user-centric metric for
+measuring perceived load speed because it marks the first point in the page
+load timeline where the user can see anything on the screen. A fast FCP helps
+reassure the user that something is happening.
+    
+    [Philip Walton. "First Contentful Paint" web.dev, Aug 17, 2022.](https://web.dev/i18n/en/fcp/)
+    
+4. **Time to First Byte (TTFB):** This is a foundational metric for measuring
+connection setup time and web server responsiveness in both the lab and the
+field. It helps identify when a web server is too slow to respond to
+requests. In the case of navigation requests—that is, requests for an HTML
+document—it precedes every other meaningful loading performance metric.
+    
+    [Jeremy Wagner. "Time to First Byte" web.dev, Jul 26, 2022.](https://web.dev/ttfb/)
+    
+
+Some of these metrics can be optimized by making changes in the theme code, while some
+others, like TTFB, have to do with the server and how fast it renders and sends the
+initial HTML to the client.
+
+### Initial Analysis
+
+Let's start by (in a really broad sense) differentiating the optimizations that can be done on a site. We started by separating them into two main areas:
+
+1. **Optimizing the Server:** Changes that have to do with where you are hosting the page, such as having a fast and reliable CDN, having all the correct caching policies, how fast the server responds, how close the server is located to the end user, etc. This part is nearly impossible to optimize for a Shopify theme since all this part is controlled by Shopify itself.
+    
+    Additionally, the amount of Liquid code the server has to render can affect the speed of response of the server. If there's one thing to take care of in this section, it is the amount of complicated Liquid code you are using in your theme.
+    
+2. **Optimizing the Code:** Changes that have to be done on the code of the theme. This is where most of our efforts will be focused. Things like preconnecting to 3rd party servers, preloading assets, removing unused code, optimizing images, and orchestrating CSS and JavaScript loading times are the things we are going to focus on in this section.
+
+### Optimizing the Code
+
+I know there are many ways to approach the optimization of the different parts of the code, but this is the process I follow. I hope that it makes sense for the majority of the cases. For this example, I will use one of our client's themes (we have previous authorization to use this theme as an example). The store is called [Lycklig Party Shop](https://lycklig.com.mx/) and they sell party supplies. They have been on Shopify since 2016, and the theme has been the same since the start of the store.
+
+### Running the first control tests
+
+I use two tools to measure the progress that was achieved with the optimization: Google Page Speed Insights and Web Page Test. Both tools are great. Google Page Speed Insights is required since one of the main goals of optimizing a Shopify store is to rank better in Google searches by having better Web Vitals. Web Page Test is a professional tool for those looking to have a deeper look into optimizing a site.
+
+Webpage Test Report:
+[Report](https://www.webpagetest.org/result/220819_BiDc6R_B5K/).
+
+PageSpeed Insights Report:
+
+<div class="image__container">
+  <img
+    alt="Lycklig Not Optimized Page Speed Insights Report"
+    style="aspect-ratio: 968/895;"
+    src="https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_300/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png"
+    srcset="https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_300/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png 300w,
+            https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_500/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png 500w,
+            https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_760/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png 760w,
+            https://res.cloudinary.com/acromatico-development/image/upload/c_scale,f_auto,w_968/v1660926662/Rafa%20Blog/lycklig-initial-test_jz8jly.png 968w"
+    sizes="(max-width: 310px) 300px,
+          (max-width: 510px) 500px,
+          (max-width: 768px) 760px,
+          (max-width: 1024px) 500px,
+          968px"
+  />
+  <small>Lycklig Not Optimized Page Speed Insights Report</small>
+</div>
+
+We can see in both cases that the theme is not as well optimized. By looking at the main Web Vitals, we can see that the main areas of opportunity are the LCP and CLS. As mentioned before, this is mostly due to all the heavy assets the site has to download and render or execute. Additionally, the CLS is affected by the way the page renders either the images or dynamic content loaded with JavaScript.
+
+Most Shopify themes have the same or similar problems, with the main areas where the templates suffer being the LCP and CLS. Some others have poor FCP and TTFB due to the improper usage of liquid when building the theme. There is too much liquid that takes a long time to render on the server, and the usage of legacy liquid code like `{% include 'name_of_file' %}` instead of `{% render 'name_of_file' %}` slows down the initial response time.
+
+Shopify has a CDN layer that caches the pages, but the caching policy cannot be too long since there is a lot of dynamic content on an e-commerce site.
+
+This is Part 1 of this blog series. If you want to learn about the practical steps to optimize a Shopify theme, please read [Part 2](https://www.notion.so/blog/optimizing-shopify-theme-2) of this blog entry.

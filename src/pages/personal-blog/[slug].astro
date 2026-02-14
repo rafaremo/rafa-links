@@ -1,0 +1,78 @@
+---
+import MainLayout from "../../layouts/main.astro";
+import {marked} from "marked";
+import fm from 'front-matter';
+
+interface Attributes {
+  title: string;
+  description: string;
+  date: string;
+}
+
+export async function getStaticPaths() {
+  const folderName = "entries";
+
+  const entries = await (await fetch(`https://repos.acromatico.dev/api/v1/repos/rafaremo/personal-blog-content/contents/${folderName}?ref=master`, {
+    headers: {
+      "Content-Type": "application/json",
+    }
+  })).json();
+
+  return entries.map((entry) => ({
+    params: {
+      slug: entry.name.replace(".md", "")
+    },
+  }));
+}
+
+const { slug } = Astro.params;
+
+const pageData = await (
+  await fetch(`https://repos.acromatico.dev/api/v1/repos/rafaremo/personal-blog-content/raw/master/entries/${slug}.md`, {
+    headers: {
+      "Content-Type": "text/plain",
+    }
+  })
+).text();
+
+const mdArray = pageData.split("\n");
+
+for (let i = 0; i < mdArray.length; i++) {
+  if (mdArray[i].includes("https://www.youtube.com")) {
+    const videoId = mdArray[i].split("watch?v=")[1].split("&")[0];
+    mdArray[i] = '<iframe id="' + videoId + '" type="text/html" width="720" height="405" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe>';
+  }
+  if (mdArray[i].includes("../assets/")) {
+    mdArray[i] = mdArray[i].replace("../assets/", "https://repos.acromatico.dev/api/v1/repos/rafaremo/personal-blog-content/raw/master/assets/");
+  }
+}
+
+const mdGood = mdArray.join("\n");
+
+const hooks = {
+  preprocess(markdown) {
+    const { attributes, body }: { attributes: any, body: string } = fm(markdown);
+    for (const prop in attributes) {
+      if (prop in this.options) {
+        this.options[prop] = attributes[prop];
+      }
+    }
+    return body;
+  }
+};
+
+marked.use({ hooks });
+
+const htmlData = marked.parse(mdGood);
+const attributes = fm(mdGood).attributes as Attributes;
+---
+
+<MainLayout
+  title={attributes.title}
+  description={attributes.description}
+  blog={true}
+  hasMainTitle={true}
+>
+  <h1 class="text-4xl text-center uppercase font-bold mb-8">{attributes.title}</h1>
+  <div set:html={htmlData}></div>
+</MainLayout>

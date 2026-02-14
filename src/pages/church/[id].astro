@@ -50,6 +50,7 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
 // @ts-ignore
 const mdblocks = await n2m.pageToMarkdown(id);
 const mdString = n2m.toMarkdownString(mdblocks);
+const generalString = mdString.replace(/(\r\n|\n|\r)/gm, " ").replace(/(-|#)/gm, "").replaceAll("  ", " ");
 const mdArray = mdString.split("\n");
 
 for (let i = 0; i < mdArray.length; i++) {
@@ -63,19 +64,22 @@ const mdGood = mdArray.join("\n");
 
 const htmlData = marked.parse(mdGood);
 
-const title = mdString
-  .split("\n")
-  .find((line) => line.startsWith("# "))
-  .replace("# ", "");
+const title = pageData.properties.title.title[0].plain_text.split(" | ").splice(0, pageData.properties.title.title[0].plain_text.split(" | ").length - 1).join(" - ");
+const description = generalString.substring(0, 250);
+console.log(pageData.cover)
 const image = pageData.cover.external.url;
 ---
 
 <MainLayout
   title={title}
-  description="Aquí pordrás encontrar una lista de todas las notas de clases que he dado y sermones que he escuchado."
+  description={description}
   image={image}
   blog={false}
   hasMainTitle={true}
 >
+  <div class="relative w-full aspect-video flex justify-center items-center mb-4">
+    <img src={image} alt={title} class="w-full h-full object-cover absolute top-0 left-0">
+    <h1 class="z-10 text-white px-8 text-sm md:text-xl m-0">{title}</h1>
+  </div>
   <div set:html={htmlData}></div>
 </MainLayout>
