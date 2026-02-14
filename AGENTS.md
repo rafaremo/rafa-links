@@ -6,8 +6,9 @@
 # Install dependencies
 npm install
 
-# Start development server (localhost:3000)
+# Start development server (localhost:4321)
 npm run dev
+npm run dev:host  # expose to network (needed for tunnels)
 npm start        # alias for dev
 
 # Production build
@@ -15,6 +16,10 @@ npm run build    # outputs to ./dist/
 
 # Preview production build locally
 npm run preview
+
+# Cloudflare tunnel for mobile testing
+npm run tunnel   # create tunnel to localhost:4321
+npm run dev:tunnel  # start dev server + tunnel together
 ```
 
 **Note**: This project has no test suite configured. No linting or formatting tools (ESLint, Prettier) are set up.
@@ -74,10 +79,11 @@ npm run preview
 
 ## Key Dependencies
 
-- **Framework**: Astro v4.16.18
-- **UI**: Svelte v5.16.0, TailwindCSS v3.2.7
-- **Content**: @astrojs/mdx, @astrojs/sitemap
-- **Analytics**: @astrojs/partytown for Google Analytics
+- **Framework**: Astro v5.17.2
+- **UI**: Svelte v5.51.0, TailwindCSS v3.4.19
+- **Content**: @astrojs/mdx v4.3.13, @astrojs/sitemap v3.7.0
+- **Analytics**: @astrojs/partytown v2.1.4 for Google Analytics
+- **Build Tool**: Vite v6.4.1
 
 ## Notes
 

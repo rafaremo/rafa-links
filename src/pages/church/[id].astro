@@ -49,7 +49,8 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
 
 // @ts-ignore
 const mdblocks = await n2m.pageToMarkdown(id);
-const mdString = n2m.toMarkdownString(mdblocks);
+const mdStringObj = n2m.toMarkdownString(mdblocks);
+const mdString = mdStringObj.parent || Object.values(mdStringObj)[0] || "";
 const generalString = mdString.replace(/(\r\n|\n|\r)/gm, " ").replace(/(-|#)/gm, "").replaceAll("  ", " ");
 const mdArray = mdString.split("\n");
 
