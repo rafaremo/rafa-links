@@ -90,3 +90,4 @@ npm run dev:tunnel  # start dev server + tunnel together
 - Site URL: https://rafa.page/
 - No automated testing or CI/CD configured
 - Partytown enabled for third-party script offloading
+- Uses nixpacks.toml for deployment configuration (Node.js 20)
