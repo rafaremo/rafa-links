@@ -2,10 +2,10 @@
 nixPkgs = ['nodejs_20']
 
 [phases.install]
-cmds = ['NODE_ENV=development npm install']
+cmds = ['npm install --include=dev']
 
 [phases.build]
 cmds = ['npm run build']
 
-[phases.start]
-cmds = ['npx serve dist -l 3000']
+[start]
+cmd = 'npx serve dist -l 3000'
