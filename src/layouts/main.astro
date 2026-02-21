@@ -205,13 +205,13 @@ const {
       {
         hasMainTitle || frontmatter?.title ? (
           <a href="/blog">
-            <h2 class="racing-sans-one-regular text-center underline underline-offset-8 uppercase text-4xl my-4 tracking-wide dark:text-white">
+            <h2 class="racing-sans-one-regular text-center underline underline-offset-8 uppercase text-4xl my-4 tracking-wide text-white">
               Blog de {profileName}
             </h2>
           </a>
         ) : (
           <a href="/">
-            <h1 class="racing-sans-one-regular text-center underline underline-offset-8 uppercase text-4xl my-4 tracking-wide dark:text-white">
+            <h1 class="racing-sans-one-regular text-center underline underline-offset-8 uppercase text-4xl my-4 tracking-wide text-white">
               {profileName}
             </h1>
           </a>
@@ -220,18 +220,18 @@ const {
       <nav class="w-full">
         <ul class="flex justify-center items-center gap-6">
           <li>
-            <a href="/" class="text-xl font-mono font-bold uppercase tracking-wide dark:text-white hover:text-gray-400 transition-colors duration-300 underline">Links</a>
+            <a href="/" class="text-xl font-mono font-bold uppercase tracking-wide text-white hover:text-gray-300 transition-colors duration-300 underline">Links</a>
           </li>
           <li>
-            <a href="/blog" class="text-xl font-mono font-bold uppercase tracking-wide dark:text-white hover:text-gray-400 transition-colors duration-300 underline">Work Blog</a>
+            <a href="/blog" class="text-xl font-mono font-bold uppercase tracking-wide text-white hover:text-gray-300 transition-colors duration-300 underline">Work Blog</a>
           </li>
           <li>
-            <a href="/personal-blog" class="text-xl font-mono font-bold uppercase tracking-wide dark:text-white hover:text-gray-400 transition-colors duration-300 underline">Personal Blog</a>
+            <a href="/personal-blog" class="text-xl font-mono font-bold uppercase tracking-wide text-white hover:text-gray-300 transition-colors duration-300 underline">Personal Blog</a>
           </li>
         </ul>
       </nav>
       <p
-        class="font-mono text-center text-l my-4 sm:mt-4 sm:mb-0 mx-auto w-11/12 max-w-5xl tracking-wide dark:text-white"
+        class="font-mono text-center text-l my-4 sm:mt-4 sm:mb-0 mx-auto w-11/12 max-w-5xl tracking-wide text-white"
       >
         {profileData.description}
       </p>
@@ -243,14 +243,14 @@ const {
       </a>
     </header>
     <main
-      class={`font-mono text-l my-16 sm:mb-8 mx-auto w-11/12 max-w-5xl tracking-wide dark:text-white ${
+      class={`font-mono text-l my-16 sm:mb-8 mx-auto w-11/12 max-w-5xl tracking-wide text-white ${
         blog || frontmatter || imageProp ? "blog" : ""
       }`}
     >
       <slot />
     </main>
     <footer class="px-3 py-8">
-      <p class="dark:text-white text-center">
+      <p class="text-white text-center">
         Powered by <a
           class="underline"
           href="https://acromatico.dev"
