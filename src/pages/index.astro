@@ -34,14 +34,14 @@ for (let link of profileData.profesionalLinks) {
 
 <MainLayout>
 	
-	<h2 class="font-mono font-bold uppercase text-xl my-14 mx-auto tracking-wide w-11/12 max-w-5xl dark:text-white">
+	<h2 class="racing-sans-one-regular uppercase text-xl my-14 mx-auto tracking-wide w-11/12 max-w-5xl dark:text-white">
 		Profesional Links</h2>
 	<div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-11/12 max-w-5xl my-2 mx-auto">
 		{profesionalLinks.map(perLink => (
 		<Icon client:load perLink={perLink} profileName={profileName} />
 		))}
 	</div>
-	<h2 class="font-mono font-bold uppercase text-xl my-14 mx-auto tracking-wide w-11/12 max-w-5xl dark:text-white">
+	<h2 class="racing-sans-one-regular uppercase text-xl my-14 mx-auto tracking-wide w-11/12 max-w-5xl dark:text-white">
 		Personal Links</h2>
 	<div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-11/12 max-w-5xl my-2 mx-auto">
 
