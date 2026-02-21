@@ -20,12 +20,12 @@ const postByDate = posts
   description="List of my most resent blog entries."
   blog={false}
 >
-  <h1 class="racing-sans-one-regular text-4xl text-center uppercase mb-8">Recent Blog Entries</h1>
+  <h1 class="racing-sans-one-regular text-4xl text-center uppercase mb-8 text-white">Recent Blog Entries</h1>
   <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
     {
       postByDate.map((post) => (
         <a href={`/blog/${post.slug}`} class="">
-          <article class="border-2 border-gray-800 dark:border-gray-200 dark:text-gray-200 dark:hover:text-white text-gray-800 hover:text-black">
+          <article class="border-2 border-white text-white hover:text-gray-200">
             <img src={post.data.image} />
             <div class="p-4">
               <h3 class="mb-4 uppercase">
@@ -34,7 +34,7 @@ const postByDate = posts
               <p class="text-s mb-2">
                 {post.data.exerpt}
               </p>
-              <p class="text-s text-gray-600 dark:text-gray-400 text-sm">
+              <p class="text-s text-gray-300 text-sm">
                 {new Date(post.data.date).toLocaleDateString("es-US")}
               </p>
             </div>
