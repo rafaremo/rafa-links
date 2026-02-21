@@ -57,7 +57,7 @@ postData.sort((a, b) => {
     {
       postData.map((post) => (
         <a href={`/personal-blog/${post.slug}`} class="">
-          <article class="border-2 border-gray-800 dark:border-gray-200 dark:text-gray-200 dark:hover:text-white text-gray-800 hover:text-black">
+          <article class="border-2 border-white text-white hover:text-gray-200">
             <div class="p-4">
               <h3 class="mb-4 uppercase">
                 {post.title}
@@ -65,7 +65,7 @@ postData.sort((a, b) => {
               <p class="text-s mb-2">
                 {post.description}
               </p>
-              <p class="text-s text-gray-600 dark:text-gray-400 text-sm">
+              <p class="text-s text-gray-300 text-sm">
                 {new Date(post.date).toLocaleDateString("es-MX", {
                   year: "numeric",
                   month: "long",
