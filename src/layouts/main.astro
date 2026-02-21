@@ -60,6 +60,9 @@ const {
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
     <meta name="theme-color" content="#ffffff" />
     <meta name="viewport" content="width=device-width" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet" />
     <title>
       {
         frontmatter?.title
@@ -179,7 +182,7 @@ const {
     ></script>
   </head>
 
-  <body class={`bg-white dark:bg-gray-900`}>
+  <body style="background: linear-gradient(0deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%); min-height: 100vh;">
     <header class="w-full flex flex-col justify-center items-center pt-10">
       <img
         class="w-1/3 md:w-52 rounded-full border-4 border-gray-900 dark:border-white aspect-square"
@@ -202,13 +205,13 @@ const {
       {
         hasMainTitle || frontmatter?.title ? (
           <a href="/blog">
-            <h2 class="font-mono text-center font-bold underline underline-offset-8 uppercase text-4xl my-4 tracking-wide dark:text-white">
+            <h2 class="racing-sans-one-regular text-center underline underline-offset-8 uppercase text-4xl my-4 tracking-wide dark:text-white">
               Blog de {profileName}
             </h2>
           </a>
         ) : (
           <a href="/">
-            <h1 class="font-mono text-center font-bold underline underline-offset-8 uppercase text-4xl my-4 tracking-wide dark:text-white">
+            <h1 class="racing-sans-one-regular text-center underline underline-offset-8 uppercase text-4xl my-4 tracking-wide dark:text-white">
               {profileName}
             </h1>
           </a>
