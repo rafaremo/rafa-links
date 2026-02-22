@@ -232,9 +232,8 @@ const {
       </nav>
       <p
         class="font-mono text-center text-l my-4 sm:mt-4 sm:mb-0 mx-auto w-11/12 max-w-5xl tracking-wide text-white"
-      >
-        {profileData.description}
-      </p>
+        set:html={profileData.description}
+      />
       <a href="/main.vcf" target="_blank" rel="noopener" class="md:hidden"
         ><button
           class="mt-4 p-4 bg-white text-black border-2 border-white rounded-md font-bold uppercase tracking-wide"
