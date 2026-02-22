@@ -14,7 +14,7 @@
   <a class="w-full flex flex-col justify-center items-center text-white hover:text-gray-300 transition-colors duration-300" href={perLink.url} target="_blank" rel="noopener" >
     <img
       loading="lazy"
-      class="w-1/2"
+      class="w-1/2 invert"
       src={perLink.iconUrl}
       alt={`${perLink.name} ${profileName}`}
     >
